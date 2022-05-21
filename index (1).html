@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>	</title>
+	<style type="text/css">
+		.sphere {
+			background-image: url(makvin.png);
+			background-size: 100% 100%;
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			transition: all 0.8s ease-out;
+			top: 0px;
+		}
+		.ground {
+			background: green;
+			position: absolute;
+			width: 1200px;
+			height: 50px;
+			top:  900px;
+		}
+	</style>
+</head>
+<body style="background-image: url('Джорно обои.jpg'); background-size: 100%;">
+
+<h1>Взорвал мaквинов <span class="ochki">0</span></h1>
+<h1 style="font-size: 100px;left: 300px; position: absolute; display: none;" class="shakal">ТЫ ЗАШАКАЛЕН</h1>	
+
+<script type="text/javascript">
+	
+	let randomizer = function(arg) {
+    	let random = Math.random() * arg;//енератор случайного числа
+    	let round = Math.round(random)//кругление числа
+   		return round
+	}
+
+	for(let i=0; i<100; i=i+1) {
+		let box = document.createElement("div");
+		document.body.appendChild(box)
+		box.classList.add("sphere")
+		box.style.left = randomizer(1300) + "px"
+		box.style.top = "-100px"
+	}
+
+	let shari = document.querySelectorAll(".sphere")
+	let speed = 0;
+	let id = 0
+	let number = 0
+	let ochki = document.querySelector(".ochki")
+	let shakal = document.querySelector(".shakal")
+	for(let i=0; i<100; i=i+1) {
+		shari[i].onclick = function() {
+			shari[i].style.backgroundImage = "url(bang.gif)"
+			shari[i].style.backgroundSize = "100% 100%"
+			number = number + 1
+			ochki.innerHTML = number
+			
+		}
+	}
+
+	let padenie = function() {
+		speed = speed + 150
+		shari[id].style.top = speed + "px"
+
+		if(speed>=1000) {
+			speed = 0;
+			shari[id].style.top = "500px"
+			shari[id].style.backgroundImage = "url(troll.png)"
+			shari[id].style.backgroundSize = "100% 100%"
+			shari[id].onclick = null
+			id = id + 1
+			if(id==99) {
+				stopGame()
+				shakal.display = "block"
+				
+			}
+		}
+	}
+
+	let MyInt = setInterval(padenie, 300)
+
+	let stopGame = function() {
+		clearInterval(MyInt)
+	}
+	/*
+		функция рандомайзер() = {
+			...
+		}
+
+
+		цикл() {
+			оздать элемнет див
+			ребенок боди див
+			диву добавить класс свера
+			див лефт = рандомайзер(900)
+		}
+		
+		лет сферы = найти все дивы с классом сфера
+		лет спид = 0
+		лет айди = 0
+		цикл (10) {
+			сферы[i] нажатие = {
+				сферы[i] дисплей нон
+			}
+		}
+
+		функция падение = {
+			спид = спид + 150
+			сферы[айди] топ = 500px
+
+			иф(спид>=1000) {
+				спид = 0: обнулить скорость движения
+				сферы[айди] дисплей нон
+				айди=айди=1
+				иф (айди=9) {
+					вызов функции лстановить игру
+				}
+			}
+		}
+
+		лет майИнт = интервыл(падение, 300)
+
+		функция остановить играу = {
+			клеарИнтервал
+		}
+		
+
+	*/
+
+</script>
+</body>
+</html>
